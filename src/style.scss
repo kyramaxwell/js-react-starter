@@ -4,3 +4,58 @@ body {
   background: darken(white, 10%);
   margin: 50px;
 }
+
+.titleform {
+  display: flex;
+  padding: 10px 14px 12px;
+  flex-direction: row;
+  align-content: stretch;
+
+  input {
+      font-size: 1.249rem;
+      padding: .743rem;
+      flex-grow: 8;
+      border: 1px solid rgba(197, 197, 197, 1.0);
+      border-radius: .25rem;
+  }
+  button {
+    font-size: 1.249rem;
+    padding: .743rem;
+    flex-grow: 1;
+    border: 1px solid rgba(197, 197, 197, 1.0);
+    border-radius: .25rem;
+  }
+}
+
+
+.note-section {
+    display: inline-flex;
+    background-color: white;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      i {
+        padding: 8px 4px 4px 4px;
+      }
+
+      h1 {
+        padding: 0px 4px 2px 4px;
+        margin: 0;
+        font-size: 25px;
+      }
+
+    }
+
+    textarea {
+      margin: 5px 5px 10px 5px;
+      display: block;
+      width: 200px;
+      height: 100px;
+    }
+}
