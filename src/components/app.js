@@ -39,28 +39,25 @@ class App extends Component {
     });
   }
 
-  onEdit() {
-    console.log(event.target.value);
-    console.log(this.props.id);
-    console.log('hello');
-    // this.setState({
-    //  notes: this.state.notes.update(editid, (n) => { return Object.assign({}, n, { text: event.target.value }); }),
-    // });
+  onEdit(editid, textvalue) {
+    this.setState({
+      notes: this.state.notes.update(editid, (n) => { return Object.assign({}, n, { text: textvalue }); }),
+    });
   }
 
   render() {
     if (this.state.notes.size === 0) {
       return (
         <div>
-          <TitleBar onSubmit={intitle => this.onSubmit(intitle, event)} />
+          <TitleBar onSubmit={(intitle, event) => this.onSubmit(intitle, event)} />
         </div>
       );
     } else {
       return (
         <div>
-          <TitleBar onSubmit={event => this.onSubmit(event)} input />
+          <TitleBar onSubmit={(intitle, event) => this.onSubmit(intitle, event)} input />
           {this.state.notes.entrySeq().map(([id, note]) => {
-            return <Note key={id} id={id} note={note} onDelete={deleteid => this.onDelete(deleteid)} onEdit={editid => this.onEdit()} />;
+            return <Note key={id} id={id} note={note} onDelete={deleteid => this.onDelete(deleteid)} onEdit={(editid, textvalue) => this.onEdit(editid, textvalue)} />;
           })}
         </div>
       );

@@ -6,7 +6,7 @@ const TitleBar = (props) => {
   let value;
   return (
     <div id="titlebar">
-      <form className="titleform" onSubmit={() => props.onSubmit(value, event)}>
+      <form className="titleform" onSubmit={(event) => props.onSubmit(value, event)}>
         <input
           type="text"
           placeholder="new note title"

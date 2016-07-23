@@ -5,12 +5,18 @@ import marked from 'marked';
 class Note extends Component {
   constructor(props) {
     super(props);
-    this.state = { editing: true };
+    this.state = {
+      editing: true,
+      textvalue: '',
+    };
     this.onEdit = this.onEdit.bind(this);
   }
 
 // functions
   onEdit() {
+    if (this.state.editing) {
+      this.props.onEdit(this.props.id, this.state.textvalue);
+    }
     this.setState({ editing: !this.state.editing });
   }
 
@@ -24,7 +30,14 @@ class Note extends Component {
 
   renderEditingText() {
     if (this.state.editing) {
-      return <textarea />;
+      return (
+        <textarea
+          onChange={(event) => {
+            this.setState({ textvalue: event.target.value });
+          }}
+          value={this.state.textvalue}
+        />
+      );
     } else {
       return <div className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.note.text || '') }} />;
     }
