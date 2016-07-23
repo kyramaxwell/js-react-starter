@@ -1,2 +1,2 @@
 # React Homework
-In this homework I created a series of creatable, editable, draggable, and deletable notes. I used the react framework with 3 components: the input bar for adding notes, the actual note, and the app for running everything together. 
+In this homework I created a series of creatable, editable, draggable, and deletable notes. I used the react framework with 3 components: the input bar for adding notes, the actual note, and the app for running everything together. Passing through props and functions to and from the different components was challenging and is messy at times, but I was able to get it working on the base level. My CSS is also not perfect.
