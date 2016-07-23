@@ -1,15 +1,34 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
+import marked from 'marked';
 
 class Note extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      editing: true,
-    };
+    this.state = { editing: true };
+    this.onEdit = this.onEdit.bind(this);
   }
 
 // functions
+  onEdit() {
+    this.setState({ editing: !this.state.editing });
+  }
+
+  renderEditingIcon() {
+    if (this.state.editing) {
+      return <i className="fa fa-check fa-lg" onClick={this.onEdit}></i>;
+    } else {
+      return <i className="fa fa-pencil fa-lg" onClick={this.onEdit}></i>;
+    }
+  }
+
+  renderEditingText() {
+    if (this.state.editing) {
+      return <textarea />;
+    } else {
+      return <div className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.note.text || '') }} />;
+    }
+  }
 
   render() {
     return (
@@ -27,13 +46,13 @@ class Note extends Component {
             <div id="left">
               <h1> {this.props.note.title} </h1>
               <i className="fa fa-trash-o fa-lg" onClick={(event) => this.props.onDelete(this.props.note.id)}></i>
-              <i className="fa fa-check fa-lg"></i>
+              {this.renderEditingIcon()}
             </div>
             <div className="note-mover">
               <i className="fa fa-arrows-alt fa-lg"></i>
             </div>
           </div>
-          <textarea />
+          {this.renderEditingText()}
         </div>
       </Draggable>
     );

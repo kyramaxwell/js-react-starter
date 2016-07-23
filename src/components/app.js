@@ -16,13 +16,13 @@ class App extends Component {
     };
   }
 
-  onSubmit(event) {
+  onSubmit(intitle, event) {
     event.preventDefault();
     const id = this.state.id + 1;
     this.state.id = id;
     const note = {
       id: this.state.id,
-      title: this.state.id,
+      title: intitle,
       text: '',
       x: 0,
       y: 0,
@@ -39,11 +39,20 @@ class App extends Component {
     });
   }
 
+  onEdit() {
+    console.log(event.target.value);
+    console.log(this.props.id);
+    console.log('hello');
+    // this.setState({
+    //  notes: this.state.notes.update(editid, (n) => { return Object.assign({}, n, { text: event.target.value }); }),
+    // });
+  }
+
   render() {
     if (this.state.notes.size === 0) {
       return (
         <div>
-          <TitleBar onSubmit={event => this.onSubmit(event)} />
+          <TitleBar onSubmit={intitle => this.onSubmit(intitle, event)} />
         </div>
       );
     } else {
@@ -51,7 +60,7 @@ class App extends Component {
         <div>
           <TitleBar onSubmit={event => this.onSubmit(event)} input />
           {this.state.notes.entrySeq().map(([id, note]) => {
-            return <Note key={id} id={id} note={note} onDelete={deleteid => this.onDelete(deleteid)} />;
+            return <Note key={id} id={id} note={note} onDelete={deleteid => this.onDelete(deleteid)} onEdit={editid => this.onEdit()} />;
           })}
         </div>
       );

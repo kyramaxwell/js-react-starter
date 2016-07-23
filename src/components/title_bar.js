@@ -3,13 +3,17 @@
 import React from 'react';
 
 const TitleBar = (props) => {
+  let value;
   return (
     <div id="titlebar">
-      <form className="titleform" onSubmit={(event) => props.onSubmit(event)}>
+      <form className="titleform" onSubmit={() => props.onSubmit(value, event)}>
         <input
           type="text"
           placeholder="new note title"
-          onChange={value => event.input.value}
+          onChange={(event) => {
+            value = event.target.value;
+          }}
+          value={value}
         />
         <button type="submit"> Submit </button>
       </form>
